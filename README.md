@@ -35,7 +35,8 @@ it will use the same yum.conf just now.
 
 then oyi tar all resource to a nginx_${timestamp}.tgz in the same directory of offline_yum_install.sh, clear the ${work_dir}.
 
-usage:
+<b>usage:</b>
+
 copy `offline_yum_install.sh` to `/var/oyi,run` and run `chmod +x /var/oyi/offline_yum_install.sh`.
 
 run `cp -r /etc/yum.repos.d /var/oyi/repos`,modify /var/oyi/repos/*.repo is needed.
