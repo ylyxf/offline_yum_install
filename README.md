@@ -15,7 +15,7 @@ there is a method : yum install package in an online enviroment which is similar
 then copy the cache directory to the dist environment , run yum install with the cacheonly option.all things is done in theory.but the details is :
 1. where is the rpms cached in the online enviroment?
 2. which directory I should copy the cached rpms?
-3. the yum find packages using the /ect/yum.repos.d/*.repo files , should I copy them from the online env to the offlien env ?
+3. the yum find packages using the /ect/yum.repos.d/*.repo files , should I copy them from online env to dist offline env ?
 4. how can I do if I can't find similar enough online env? if the online env has installed some depended packages before ?
 
 all the question answer is offine_yum_install.sh(oyi),for example,if you want a offline package like nginx:
