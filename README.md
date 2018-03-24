@@ -12,12 +12,10 @@ yum can resolve this problem , in online and offline ways. but in the offline wa
 
 there is a method : yum install package in an online enviroment which is similar with the dist offline enviroment using downloadonly and keepcache option. then you can get the rpms organized by yum repos formate.
 
-then copy the cache directory to the dist environment , run yum install with the cacheonly option.all things is done in theory.
-
-the details is :
+then copy the cache directory to the dist environment , run yum install with the cacheonly option.all things is done in theory.but the details is :
 1. where is the rpms cached in the online enviroment?
 2. which directory I should copy the cached rpms?
-3. the yum find packages  based on the /ect/yum.repos.d/*.repo files , should I copy them from the online env to the offlien env ?
+3. the yum find packages using the /ect/yum.repos.d/*.repo files , should I copy them from the online env to the offlien env ?
 4. how can I do if I can't find similar enough online env? if the online env has installed some depended packages before ?
 
 all the question answer is offine_yum_install.sh(oyi),for example,if you want a offline package like nginx:
@@ -37,13 +35,14 @@ it will use the same yum.conf just now.
 
 then oyi tar all resource to a nginx_${timestamp}.tgz in the same directory of offline_yum_install.sh, clear the ${work_dir}.
 
-the best practice is using oyi in docker , because the basic os images is more clean then mini iso , yum will download as more depends as possiable.
-
+usage:
 copy `offline_yum_install.sh` to `/var/oyi,run` and run `chmod +x /var/oyi/offline_yum_install.sh`.
 
-`cp -r /etc/yum.repos.d /var/oyi/repos`,modify /var/oyi/repos/*.repo is needed
+run `cp -r /etc/yum.repos.d /var/oyi/repos`,modify /var/oyi/repos/*.repo is needed.
 
-`docker run -it --privileged=true --workdir=/var/oyi -v /var/oyi:/var/oyi centos:7.2.1511 /var/oyi/offline_yum_install.sh nginx` and you will receive a tgz file in the `/var/oyi`folder,copy it to the dist offline env , unpack it ,run `./install_nginx.sh` in the folder.
+run `cd//var/oyi` then `./offline_yum_install.sh nginx -y`.you will receive a tgz file in the `/var/oyi`folder,copy it to the dist offline env , unpack it ,run `./install_nginx.sh` in the folder.
+
+the best practice is using oyi in docker , because the basic os images is more clean then mini iso , yum will download as more depends as possiable.`docker run -it --privileged=true --workdir=/var/oyi -v /var/oyi:/var/oyi centos:7.2.1511 /var/oyi/offline_yum_install.sh nginx -y `  
 
 >the question 4 is not answered perfectly, `maybe` oyi can copy the rpm database from the dist env and let yum use it when runing in the online env,it will be a perfectly plan,but i am not familiar with these configs now.
 
