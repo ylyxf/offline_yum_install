@@ -22,7 +22,9 @@ the details is :
 
 all the question answer is offine_yum_install.sh(oyi),for example,if you want a offline package like nginx:
 
-run the `offline_yum_install.sh nginx -y`, the oyi will init a workdir, sepcial the yum `cachedir` to the ${workdir}/cache,special the yum `reposdir` to the ${workdir}/repos. the cachedir will filled by yum intall command with `keepcache` option.the reposdir should be prepared before by the user who can copy `/etc/yum.repos.d` files to the repos dir which in the same directory of offline_yum_install.sh.
+run the `./offline_yum_install.sh nginx -y`, the oyi will init a workdir, sepcial the yum `cachedir` to the ${workdir}/cache,special the yum `reposdir` to the ${workdir}/repos. the cachedir will filled by yum intall command with `keepcache` option.the reposdir should be prepared before by the user who can copy `/etc/yum.repos.d` files to the repos dir which in the same directory of offline_yum_install.sh.
+
+>please run the command in the offline_yum_install.sh scirpt's directory for relative path reasones.
 
 >the  offline_yum_install.sh will not copy `/etc/yum.repos.d` to `{workdir}/repos` automatically, you should copy them manually.this is because oyi want you keep your online env all stay the same,you need not modify /etc/yum.repos.d/*.repo for oyi, just modify the `repos/*.repo` files for oyi where is in  the same directoy of  offline_yum_install.sh.whih the same reason ,oyi will not modify the /etc/yum.conf , it will copy /etc/yum.conf to it's ${workdir} and call yum with `--config=${workdir}/yum.conf`.
 
